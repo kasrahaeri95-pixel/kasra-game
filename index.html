@@ -151,4 +151,7 @@ restoreProgress();
 if(normalizedQuestions.length!==50)console.warn('Expected exactly 50 questions');if(!normalizedQuestions.some(q=>q.q.includes('عدد ۱')))console.warn('Missing question about one');
 })();
 </script>
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
+</script>
 </body></html>
