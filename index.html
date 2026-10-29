@@ -22,6 +22,9 @@
 @keyframes guideFloat{50%{transform:translateY(-5px)}}
 @media(max-width:850px){.hero-art{min-height:0;aspect-ratio:1/1}.hero-art .teacher{object-position:center 42%}.stage .guide{grid-template-columns:145px 1fr;gap:10px}.stage .guide .teacher{width:145px;height:175px;max-width:145px;margin:0 auto;transform:none}.guide-name{align-self:end}.guide-msg{align-self:start}}
 @media(max-width:540px){.hero-art{aspect-ratio:1/1;min-height:0}.hero-art .teacher{object-position:center 42%}.stage .guide{grid-template-columns:125px minmax(0,1fr);padding:12px;gap:8px}.stage .guide .teacher{width:125px;height:155px;max-width:125px}.guide-name{font-size:1.1rem}.guide-msg{font-size:.85rem;padding:10px;margin:4px 0}.panel{padding:14px}}
+
+/* Clean hero artwork: remove decorative floating circles and duplicate math text */
+.hero-art .orb,.hero-art .floating-math{display:none!important}
 </style>
 </head>
 <body>
