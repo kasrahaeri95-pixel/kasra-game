@@ -23,15 +23,46 @@
 @media(max-width:850px){.hero-art{min-height:0;aspect-ratio:1/1}.hero-art .teacher{object-position:center 42%}.stage .guide{grid-template-columns:145px 1fr;gap:10px}.stage .guide .teacher{width:145px;height:175px;max-width:145px;margin:0 auto;transform:none}.guide-name{align-self:end}.guide-msg{align-self:start}}
 @media(max-width:540px){.hero-art{aspect-ratio:1/1;min-height:0}.hero-art .teacher{object-position:center 42%}.stage .guide{grid-template-columns:125px minmax(0,1fr);padding:12px;gap:8px}.stage .guide .teacher{width:125px;height:155px;max-width:125px}.guide-name{font-size:1.1rem}.guide-msg{font-size:.85rem;padding:10px;margin:4px 0}.panel{padding:14px}}
 
+
+/* صفحهٔ شروع با جزئیات بیشتر و هالهٔ دنبال‌کنندهٔ لمس */
+#home{position:relative;isolation:isolate;overflow:hidden;border-radius:30px;padding:8px;margin:-8px}
+.home-math-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;border-radius:30px;background:radial-gradient(ellipse at 50% 0%,#e6edff88,transparent 58%)}
+.home-math-bg:before{content:"";position:absolute;inset:0;opacity:.48;background-image:linear-gradient(#91a9dc18 1px,transparent 1px),linear-gradient(90deg,#91a9dc18 1px,transparent 1px);background-size:34px 34px;mask-image:radial-gradient(ellipse at center,#000 15%,transparent 88%)}
+.home-math-bg span{position:absolute;font-weight:900;white-space:nowrap;user-select:none;color:#8194d1;opacity:.16;animation:homeMathFloat 15s ease-in-out infinite}
+.home-math-bg span:nth-child(1){top:3%;left:5%;font-size:clamp(2rem,6vw,4rem);transform:rotate(-12deg)}
+.home-math-bg span:nth-child(2){top:18%;right:2%;font-size:clamp(1.7rem,5vw,3.2rem);animation-delay:-4s}
+.home-math-bg span:nth-child(3){bottom:18%;left:2%;font-size:clamp(2rem,6vw,4rem);animation-delay:-8s}
+.home-math-bg span:nth-child(4){bottom:5%;right:8%;font-size:clamp(1.8rem,5vw,3.3rem);animation-delay:-3s}
+.home-math-bg span:nth-child(5){top:52%;left:47%;font-size:2rem;animation-delay:-6s}
+.home-math-bg span:nth-child(6){top:5%;right:43%;font-size:1.8rem;animation-delay:-10s}
+@keyframes homeMathFloat{0%,100%{translate:0 0;rotate:-5deg}50%{translate:0 -17px;rotate:5deg}}
+#home .hero{position:relative;z-index:1}
+#home .panel{position:relative;overflow:hidden;background:linear-gradient(145deg,#ffffffed,#f9fbffeb 55%,#fff7fcf0);border:1px solid #ffffff;box-shadow:0 24px 65px #536ba526,inset 0 1px 0 #fff}
+#home .panel:before{content:"";position:absolute;width:240px;height:240px;top:-145px;left:-95px;border-radius:50%;background:radial-gradient(circle,#b9d9ff88,transparent 70%);pointer-events:none}
+#home .hero h1{position:relative;text-shadow:0 5px 24px #9aa9df20}
+#home .hero-art{box-shadow:0 24px 65px #536ba52c,0 0 0 1px #ffffff;border:1px solid #fff}
+#home .cards{position:relative}
+#home .mini-card{background:#ffffffdc;box-shadow:0 9px 22px #63749d12;transition:transform .25s,box-shadow .25s}
+#home .mini-card:hover{transform:translateY(-5px);box-shadow:0 15px 28px #63749d22}
+#home .inputrow input{box-shadow:inset 0 2px 5px #4b65900b;transition:border-color .2s,box-shadow .2s}
+#home .inputrow input:focus{border-color:#9c9af5;box-shadow:0 0 0 4px #a99af52b}
+#home .primary{box-shadow:0 10px 22px #8299ee55}
+#pointerGlow{position:fixed;left:0;top:0;width:310px;height:310px;border-radius:50%;pointer-events:none;z-index:9998;opacity:0;transform:translate3d(-50%,-50%,0);background:radial-gradient(circle,rgba(119,165,255,.24) 0%,rgba(174,139,255,.16) 32%,rgba(255,158,208,.08) 53%,transparent 72%);filter:blur(7px);transition:opacity .25s;mix-blend-mode:multiply}
+#pointerGlow.visible{opacity:1}
+@media(prefers-reduced-motion:reduce){.home-math-bg span{animation:none}#home .mini-card{transition:none}}
+@media(max-width:540px){#home{padding:4px;margin:-4px}.home-math-bg span{opacity:.11}#pointerGlow{width:230px;height:230px}}
+
 /* Clean hero artwork: remove decorative floating circles and duplicate math text */
 .hero-art .orb,.hero-art .floating-math{display:none!important}
 </style>
 </head>
 <body>
+<div id="pointerGlow" aria-hidden="true"></div>
 <div class="wrap">
 <header class="topbar"><div class="brand"><div class="brand-icon">✦</div><div>ماجرای اعداد اول <div style="font-size:.75rem;color:var(--muted);font-weight:500">یک ماجراجویی ریاضی با کسری</div></div></div><div class="pill" id="topStatus">آموزش • بازی • چالش</div></header>
 <main>
 <section id="home" class="view active">
+<div class="home-math-bg" aria-hidden="true"><span>π = ۳٫۱۴</span><span>۲ × ۳ × ۵ × ۷</span><span>√۱۲۱ = ۱۱</span><span>∞  ÷  ×  +</span><span>n² + ۱</span><span>∑ aᵢ</span></div>
 <div class="hero"><div class="panel"><span class="pill">ویژهٔ ریاضی پایه هشتم</span><h1>راز اعداد را با <span class="gradient-text">کسری</span> کشف کن!</h1><p class="lead">یاد بگیر عدد اول و مرکب چه فرقی دارند، روش غربال اراتستن را اجرا کن و در بیش از ۵۰ چالش از آسان تا فوق‌العاده سخت، مهارتت را محک بزن.</p><label for="studentName" style="font-weight:800;display:block;margin-top:20px">اسم دانش‌آموز</label><div class="inputrow"><input id="studentName" maxlength="35" placeholder="مثلاً کسری" autocomplete="given-name"><button class="btn primary" id="startBtn">شروع ماجراجویی ←</button></div><div class="notice">🔎 بدون نیاز به نصب برنامه یا پخش صدا. گزارش نتیجهٔ نهایی ذخیره می‌شود.</div><div class="video-actions"><button class="btn softpink" data-goto="videoLesson">🎬 تماشای ویدئوی آموزشی غربال</button><a class="btn softpink" href="./hunter.html" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;margin-top:10px">🎯 بازی شکارچی اعداد اول</a></div><div class="cards"><div class="mini-card"><div class="emoji">📘</div><h3>یادگیری</h3><p>تعریف‌ها و مثال‌های دقیق</p></div><div class="mini-card"><div class="emoji">🧩</div><h3>۵۰ چالش</h3><p>از ساده تا بسیار دشوار</p></div><div class="mini-card"><div class="emoji">🧮</div><h3>تختهٔ زنده</h3><p>نوشتن مرحله‌ای سؤال و جواب</p></div></div></div>
 <div class="hero-art"><div class="orb one"></div><div class="orb two"></div><div class="orb three"></div><div class="floating-math">2, 3, 5, 7...</div><img class="teacher" src="./kasri-pro.png" alt="شخصیت سه‌بعدی کسری، راهنمای بازی" loading="eager"><div class="board-mini">۲، ۳، ۵<br>اعداد اول</div></div></div>
 </section>
@@ -161,6 +192,21 @@ $('showMultiples').addEventListener('click',()=>{const p=shownMultiple;document.
 restoreProgress();
 // Basic sanity checks for question count and required content.
 if(normalizedQuestions.length!==50)console.warn('Expected exactly 50 questions');if(!normalizedQuestions.some(q=>q.q.includes('عدد ۱')))console.warn('Missing question about one');
+})();
+</script>
+<script>
+(()=>{
+ const glow=document.getElementById('pointerGlow');
+ if(!glow)return;
+ let hideTimer;
+ const move=(x,y)=>{
+  glow.style.left=x+'px';glow.style.top=y+'px';glow.classList.add('visible');
+  clearTimeout(hideTimer);hideTimer=setTimeout(()=>glow.classList.remove('visible'),1400);
+ };
+ document.addEventListener('pointermove',e=>move(e.clientX,e.clientY),{passive:true});
+ document.addEventListener('touchstart',e=>{const t=e.touches[0];if(t)move(t.clientX,t.clientY)},{passive:true});
+ document.addEventListener('touchmove',e=>{const t=e.touches[0];if(t)move(t.clientX,t.clientY)},{passive:true});
+ document.addEventListener('pointerdown',e=>move(e.clientX,e.clientY),{passive:true});
 })();
 </script>
 <script>
