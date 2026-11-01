@@ -26,18 +26,37 @@
 
 /* صفحهٔ شروع با جزئیات بیشتر و هالهٔ دنبال‌کنندهٔ لمس */
 #home{position:relative;isolation:isolate;overflow:hidden;border-radius:30px;padding:8px;margin:-8px}
-.home-math-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;border-radius:30px;background:radial-gradient(ellipse at 12% 18%,#d8e8ffb8,transparent 38%),radial-gradient(ellipse at 88% 72%,#f5dcff99,transparent 42%),linear-gradient(135deg,#f4f8ff55,#fff7fc66)}
-.home-math-bg:before{content:"";position:absolute;inset:0;opacity:.48;background-image:linear-gradient(#91a9dc18 1px,transparent 1px),linear-gradient(90deg,#91a9dc18 1px,transparent 1px);background-size:34px 34px;mask-image:radial-gradient(ellipse at center,#000 15%,transparent 88%)}
-.home-math-bg span{position:absolute;font-weight:900;white-space:nowrap;user-select:none;color:#657fc4;opacity:.27;text-shadow:0 3px 16px #8298d833;animation:homeMathFloat 15s ease-in-out infinite}
+.home-math-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;border-radius:30px;background:radial-gradient(ellipse at 18% 12%,#18275b 0,transparent 34%),radial-gradient(ellipse at 82% 70%,#21104c 0,transparent 42%),radial-gradient(ellipse at 50% 48%,#071a3b 0,#03091f 68%,#020617 100%)}
+.home-math-bg:before{content:"";position:absolute;inset:-5%;opacity:.95;background-image:radial-gradient(circle at 7% 14%,#b9dcff 0 2px,transparent 3px),radial-gradient(circle at 18% 72%,#7adfff 0 2px,transparent 4px),radial-gradient(circle at 31% 28%,#d4eaff 0 3px,transparent 5px),radial-gradient(circle at 46% 82%,#7bbdff 0 2px,transparent 4px),radial-gradient(circle at 58% 16%,#b9caff 0 2px,transparent 4px),radial-gradient(circle at 72% 58%,#8be8ff 0 3px,transparent 5px),radial-gradient(circle at 88% 24%,#c7d7ff 0 2px,transparent 4px),radial-gradient(circle at 94% 86%,#b18cff 0 3px,transparent 5px),radial-gradient(circle at 12% 48%,#9dbdff 0 1px,transparent 3px),radial-gradient(circle at 40% 8%,#fff 0 1px,transparent 3px),radial-gradient(circle at 66% 91%,#fff 0 1px,transparent 3px);filter:drop-shadow(0 0 7px #62cfff)}
+.home-math-bg:after{content:"";position:absolute;inset:0;opacity:.25;background:linear-gradient(31deg,transparent 0 19%,#4f9dff 19.1%,transparent 19.3% 100%),linear-gradient(148deg,transparent 0 47%,#6d8bff 47.1%,transparent 47.3% 100%),linear-gradient(72deg,transparent 0 71%,#5fdcff 71.1%,transparent 71.3% 100%);mask-image:radial-gradient(ellipse at center,#000 5%,transparent 82%)}
+.home-math-bg span{position:absolute;font-weight:900;white-space:nowrap;user-select:none;color:#65d9ff;opacity:.62;text-shadow:0 0 8px #46cfff,0 0 22px #278dff88;animation:homeMathFloat 15s ease-in-out infinite}
 .home-math-bg span:nth-child(1){top:3%;left:5%;font-size:clamp(2rem,6vw,4rem);transform:rotate(-12deg)}
 .home-math-bg span:nth-child(2){top:18%;right:2%;font-size:clamp(1.7rem,5vw,3.2rem);animation-delay:-4s}
 .home-math-bg span:nth-child(3){bottom:18%;left:2%;font-size:clamp(2rem,6vw,4rem);animation-delay:-8s}
 .home-math-bg span:nth-child(4){bottom:5%;right:8%;font-size:clamp(1.8rem,5vw,3.3rem);animation-delay:-3s}
 .home-math-bg span:nth-child(5){top:52%;left:47%;font-size:2rem;animation-delay:-6s}
 .home-math-bg span:nth-child(6){top:5%;right:43%;font-size:1.8rem;animation-delay:-10s}
+.home-math-bg span:nth-child(7){top:29%;left:17%;font-size:1.4rem;animation-delay:-5s}
+.home-math-bg span:nth-child(8){top:43%;right:8%;font-size:1.8rem;animation-delay:-9s}
+.home-math-bg span:nth-child(9){top:68%;right:39%;font-size:1.5rem;animation-delay:-2s}
+.home-math-bg span:nth-child(10){bottom:12%;left:28%;font-size:1.7rem;animation-delay:-7s}
+.home-math-bg span:nth-child(11){top:83%;right:7%;font-size:1.3rem;animation-delay:-11s}
+.home-math-bg span:nth-child(12){top:35%;left:72%;font-size:1.2rem;animation-delay:-3s}
+.home-math-bg span:nth-child(13){top:10%;left:48%;font-size:1.1rem;animation-delay:-12s}
+.home-math-bg span:nth-child(14){bottom:28%;left:6%;font-size:1.6rem;animation-delay:-6s}
+.home-math-bg span:nth-child(15){top:57%;right:22%;font-size:1.1rem;animation-delay:-4s}
+.home-math-bg span:nth-child(16){bottom:4%;right:48%;font-size:1.4rem;animation-delay:-8s}
+.home-math-bg span:nth-child(17){top:22%;right:29%;font-size:1.3rem;animation-delay:-1s}
+.home-math-bg span:nth-child(18){top:76%;left:53%;font-size:1.1rem;animation-delay:-10s}
 @keyframes homeMathFloat{0%,100%{translate:0 0;rotate:-5deg}50%{translate:0 -17px;rotate:5deg}}
 #home .hero{position:relative;z-index:1}
-#home .panel{position:relative;overflow:hidden;background:linear-gradient(145deg,#ffffffed,#f9fbffeb 55%,#fff7fcf0);border:1px solid #ffffff;box-shadow:0 24px 65px #536ba526,inset 0 1px 0 #fff}
+#home .panel{position:relative;overflow:hidden;background:linear-gradient(145deg,#091735e8,#10133de8 55%,#211039e8);border:1px solid #83cfff35;box-shadow:0 24px 65px #0008,inset 0 1px 0 #ffffff12;color:#f4f7ff}
+#home .lead{color:#b5c5e5}
+#home .panel .pill{background:#14244b;color:#a9dfff;border-color:#65baff44}
+#home .notice{color:#9fb5da}
+#home .mini-card{background:#101d3be8;border-color:#6bbcff30;color:#eef6ff}
+#home .mini-card p{color:#aebfe0}
+#home .mini-card h3{color:#f4f8ff}
 #home .panel:before{content:"";position:absolute;width:240px;height:240px;top:-145px;left:-95px;border-radius:50%;background:radial-gradient(circle,#b9d9ff88,transparent 70%);pointer-events:none}
 #home .hero h1{position:relative;text-shadow:0 5px 24px #9aa9df20}
 #home .hero-art{box-shadow:0 24px 65px #536ba52c,0 0 0 1px #ffffff;border:1px solid #fff}
@@ -62,7 +81,7 @@
 <header class="topbar"><div class="brand"><div class="brand-icon">✦</div><div>ماجرای اعداد اول <div style="font-size:.75rem;color:var(--muted);font-weight:500">یک ماجراجویی ریاضی با کسری</div></div></div><div class="pill" id="topStatus">آموزش • بازی • چالش</div></header>
 <main>
 <section id="home" class="view active">
-<div class="home-math-bg" aria-hidden="true"><span>π = ۳٫۱۴</span><span>۲ × ۳ × ۵ × ۷</span><span>√۱۲۱ = ۱۱</span><span>∞  ÷  ×  +</span><span>n² + ۱</span><span>∑ aᵢ</span></div>
+<div class="home-math-bg" aria-hidden="true"><span>π = ۳٫۱۴</span><span>۲ × ۳ × ۵ × ۷</span><span>√۱۲۱ = ۱۱</span><span>∞　÷　×　+</span><span>n² + ۱</span><span>∑ aᵢ</span><span>۴۳</span><span>۱۹</span><span>۱۳</span><span>۵۳</span><span>۴۱</span><span>۳۱</span><span>۶۷</span><span>√۴۹ = ۷</span><span>۲۳</span><span>۹۷</span><span>۱۱ × ۱۳</span><span>۲۹</span></div>
 <div class="hero"><div class="panel"><span class="pill">ویژهٔ ریاضی پایه هشتم</span><h1>راز اعداد را با <span class="gradient-text">کسری</span> کشف کن!</h1><p class="lead">یاد بگیر عدد اول و مرکب چه فرقی دارند، روش غربال اراتستن را اجرا کن و در بیش از ۵۰ چالش از آسان تا فوق‌العاده سخت، مهارتت را محک بزن.</p><label for="studentName" style="font-weight:800;display:block;margin-top:20px">اسم دانش‌آموز</label><div class="inputrow"><input id="studentName" maxlength="35" placeholder="مثلاً کسری" autocomplete="given-name"><button class="btn primary" id="startBtn">شروع ماجراجویی ←</button></div><div class="notice">🔎 بدون نیاز به نصب برنامه یا پخش صدا. گزارش نتیجهٔ نهایی ذخیره می‌شود.</div><div class="video-actions"><button class="btn softpink" data-goto="videoLesson">🎬 تماشای ویدئوی آموزشی غربال</button><a class="btn softpink" href="./hunter.html" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;margin-top:10px">🎯 بازی شکارچی اعداد اول</a></div><div class="cards"><div class="mini-card"><div class="emoji">📘</div><h3>یادگیری</h3><p>تعریف‌ها و مثال‌های دقیق</p></div><div class="mini-card"><div class="emoji">🧩</div><h3>۵۰ چالش</h3><p>از ساده تا بسیار دشوار</p></div><div class="mini-card"><div class="emoji">🧮</div><h3>تختهٔ زنده</h3><p>نوشتن مرحله‌ای سؤال و جواب</p></div></div></div>
 <div class="hero-art"><div class="orb one"></div><div class="orb two"></div><div class="orb three"></div><div class="floating-math">2, 3, 5, 7...</div><img class="teacher" src="./kasri-pro.png" alt="شخصیت سه‌بعدی کسری، راهنمای بازی" loading="eager"><div class="board-mini">۲، ۳، ۵<br>اعداد اول</div></div></div>
 </section>
