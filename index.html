@@ -26,9 +26,9 @@
 
 /* صفحهٔ شروع با جزئیات بیشتر و هالهٔ دنبال‌کنندهٔ لمس */
 #home{position:relative;isolation:isolate;overflow:hidden;border-radius:30px;padding:8px;margin:-8px}
-.home-math-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;border-radius:30px;background:radial-gradient(ellipse at 50% 0%,#e6edff88,transparent 58%)}
+.home-math-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;border-radius:30px;background:radial-gradient(ellipse at 12% 18%,#d8e8ffb8,transparent 38%),radial-gradient(ellipse at 88% 72%,#f5dcff99,transparent 42%),linear-gradient(135deg,#f4f8ff55,#fff7fc66)}
 .home-math-bg:before{content:"";position:absolute;inset:0;opacity:.48;background-image:linear-gradient(#91a9dc18 1px,transparent 1px),linear-gradient(90deg,#91a9dc18 1px,transparent 1px);background-size:34px 34px;mask-image:radial-gradient(ellipse at center,#000 15%,transparent 88%)}
-.home-math-bg span{position:absolute;font-weight:900;white-space:nowrap;user-select:none;color:#8194d1;opacity:.16;animation:homeMathFloat 15s ease-in-out infinite}
+.home-math-bg span{position:absolute;font-weight:900;white-space:nowrap;user-select:none;color:#657fc4;opacity:.27;text-shadow:0 3px 16px #8298d833;animation:homeMathFloat 15s ease-in-out infinite}
 .home-math-bg span:nth-child(1){top:3%;left:5%;font-size:clamp(2rem,6vw,4rem);transform:rotate(-12deg)}
 .home-math-bg span:nth-child(2){top:18%;right:2%;font-size:clamp(1.7rem,5vw,3.2rem);animation-delay:-4s}
 .home-math-bg span:nth-child(3){bottom:18%;left:2%;font-size:clamp(2rem,6vw,4rem);animation-delay:-8s}
@@ -217,6 +217,6 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.se
 .creator-credit{max-width:1180px;margin:18px auto 0;padding:16px 22px 26px;text-align:center;color:#6c7893;font-size:.92rem}
 .creator-credit strong{color:#6755b8;font-weight:800}
 </style>
-<footer class="creator-credit">سازنده: <strong>کسری حائری</strong></footer>
+<footer class="creator-credit">سازنده: <strong>کسری حائری</strong><span aria-hidden="true">　|　</span>مدرسه: <strong>شهید بهشتی (سمپاد)</strong></footer>
 
 </body></html>
