@@ -30,6 +30,12 @@
 .home-math-bg:before{content:"";position:absolute;inset:-5%;opacity:.95;background-image:radial-gradient(circle at 7% 14%,#b9dcff 0 2px,transparent 3px),radial-gradient(circle at 18% 72%,#7adfff 0 2px,transparent 4px),radial-gradient(circle at 31% 28%,#d4eaff 0 3px,transparent 5px),radial-gradient(circle at 46% 82%,#7bbdff 0 2px,transparent 4px),radial-gradient(circle at 58% 16%,#b9caff 0 2px,transparent 4px),radial-gradient(circle at 72% 58%,#8be8ff 0 3px,transparent 5px),radial-gradient(circle at 88% 24%,#c7d7ff 0 2px,transparent 4px),radial-gradient(circle at 94% 86%,#b18cff 0 3px,transparent 5px),radial-gradient(circle at 12% 48%,#9dbdff 0 1px,transparent 3px),radial-gradient(circle at 40% 8%,#fff 0 1px,transparent 3px),radial-gradient(circle at 66% 91%,#fff 0 1px,transparent 3px);filter:drop-shadow(0 0 7px #62cfff)}
 .home-math-bg:after{content:"";position:absolute;inset:0;opacity:.25;background:linear-gradient(31deg,transparent 0 19%,#4f9dff 19.1%,transparent 19.3% 100%),linear-gradient(148deg,transparent 0 47%,#6d8bff 47.1%,transparent 47.3% 100%),linear-gradient(72deg,transparent 0 71%,#5fdcff 71.1%,transparent 71.3% 100%);mask-image:radial-gradient(ellipse at center,#000 5%,transparent 82%)}
 .home-math-bg span{position:absolute;font-weight:900;white-space:nowrap;user-select:none;color:#65d9ff;opacity:.62;text-shadow:0 0 8px #46cfff,0 0 22px #278dff88;animation:homeMathFloat 15s ease-in-out infinite}
+/* Neon green math numbers sit above the dark panel, while text stays readable */
+.home-math-bg span{z-index:2;color:#39ff88;opacity:.88;text-shadow:0 0 5px #39ff88,0 0 13px #16e66d,0 0 26px #00ff7b;mix-blend-mode:screen}
+#home .panel>*{position:relative;z-index:3}
+#home .panel{background:linear-gradient(145deg,#07132de0,#10113be0 55%,#1b0d35e0)}
+@media(max-width:540px){.home-math-bg span{opacity:.78;font-size:clamp(1rem,5vw,1.55rem)}}
+
 .home-math-bg span:nth-child(1){top:3%;left:5%;font-size:clamp(2rem,6vw,4rem);transform:rotate(-12deg)}
 .home-math-bg span:nth-child(2){top:18%;right:2%;font-size:clamp(1.7rem,5vw,3.2rem);animation-delay:-4s}
 .home-math-bg span:nth-child(3){bottom:18%;left:2%;font-size:clamp(2rem,6vw,4rem);animation-delay:-8s}
