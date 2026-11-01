@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#0b0e1a">
+<title>شکارچی اعداد اول</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<style>
+:root{--accent:#6ee7ff;--gold:#ffd166;--green:#34d399;--red:#f87171;--purple:#a78bfa}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%;margin:0}
+body{background:radial-gradient(circle at 15% 5%,#1b2450,#0b0e1a 55%);color:#e8ecff;font-family:'Vazirmatn',system-ui,Tahoma,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;overflow-x:hidden}
+#trail{position:fixed;inset:0;pointer-events:none;z-index:9999;mix-blend-mode:screen}
+.blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.35;z-index:0;pointer-events:none;animation:float 14s ease-in-out infinite}
+.b1{width:420px;height:420px;background:#3b82f6;top:-120px;left:-100px}.b2{width:380px;height:380px;background:#a855f7;bottom:-140px;right:-80px;animation-delay:-5s}.b3{width:300px;height:300px;background:#06b6d4;top:40%;left:55%;animation-delay:-9s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-50px) scale(1.12)}}
+.wrap{width:min(680px,100%);display:flex;flex-direction:column;gap:18px;position:relative;z-index:1}
+.hud{display:flex;gap:10px}.hud-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:10px 8px;backdrop-filter:blur(10px)}
+.hud-label{font-size:.72rem;opacity:.65}.hud-value{font-size:1.15rem;font-weight:800;color:var(--gold)}
+.progress-track{height:8px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}.progress-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--purple),var(--gold));transition:width .6s cubic-bezier(.2,.9,.2,1);box-shadow:0 0 16px rgba(110,231,255,.6)}
+.card{position:relative;text-align:center;padding:36px 22px 26px;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:30px;backdrop-filter:blur(22px);overflow:hidden;box-shadow:0 22px 70px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08);transition:border-color .35s,box-shadow .35s}
+.card-glow{position:absolute;inset:-60%;pointer-events:none;opacity:.5;background:conic-gradient(from 0deg,transparent,rgba(110,231,255,.16),transparent 28%);animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.q-label{position:relative;margin:0;font-size:.95rem;opacity:.7;letter-spacing:.5px}
+.q-num{position:relative;font-size:clamp(4rem,18vw,7.2rem);font-weight:800;line-height:1;margin:10px 0 26px;background:linear-gradient(180deg,#fff,#8fb7ff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 32px rgba(110,167,255,.45))}
+.q-num.pop{animation:popIn .65s cubic-bezier(.2,.9,.2,1)}
+@keyframes popIn{0%{transform:scale(.35) rotate(-14deg);opacity:0;filter:blur(10px)}60%{transform:scale(1.16) rotate(3deg);opacity:1;filter:blur(0)}100%{transform:scale(1) rotate(0)}}
+.answers{display:flex;gap:14px;justify-content:center;position:relative}
+.btn{flex:1;max-width:210px;padding:17px 10px;border-radius:18px;font-family:inherit;font-size:1.1rem;font-weight:800;cursor:pointer;position:relative;overflow:hidden;border:1px solid;transition:transform .15s,box-shadow .3s,filter .3s}
+.btn:hover{transform:translateY(-3px)}.btn:active{transform:scale(.96)}.btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.btn-prime{background:linear-gradient(135deg,rgba(52,211,153,.22),rgba(52,211,153,.05));border-color:rgba(52,211,153,.55);color:#6ee7b7}
+.btn-comp{background:linear-gradient(135deg,rgba(248,113,113,.18),rgba(248,113,113,.03));border-color:rgba(248,113,113,.45);color:#fca5a5}
+.feedback{min-height:26px;margin-top:18px;font-size:.92rem;opacity:0;transition:opacity .35s;position:relative}.feedback.show{opacity:1}.feedback .good{color:#6ee7b7;font-weight:700}.feedback .bad{color:#fca5a5;font-weight:700}
+.card.correct{border-color:rgba(52,211,153,.7);box-shadow:0 0 60px rgba(52,211,153,.35),inset 0 0 40px rgba(52,211,153,.12)}.card.wrong{border-color:rgba(248,113,113,.7);box-shadow:0 0 60px rgba(248,113,113,.35),inset 0 0 40px rgba(248,113,113,.12)}
+.card.enter{animation:cardIn .5s cubic-bezier(.2,.8,.2,1)}@keyframes cardIn{0%{opacity:0;transform:translateY(28px) scale(.94)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.card.shake{animation:shake .5s ease-in-out}@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-12px) rotate(-1deg)}40%{transform:translateX(10px) rotate(1deg)}60%{transform:translateX(-8px)}80%{transform:translateX(6px)}}
+.footer{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.ghost{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#cbd5ff;padding:10px 18px;border-radius:14px;font-family:inherit;font-size:.85rem;cursor:pointer}
+.end-screen{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px;background:rgba(5,8,20,.82);backdrop-filter:blur(14px)}.end-screen.show{display:grid;animation:fadeIn .4s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.end-card{text-align:center;padding:38px 30px;border-radius:28px;max-width:420px;width:100%;background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.15);box-shadow:0 30px 80px rgba(0,0,0,.6);animation:cardIn .5s}
+.end-emoji{font-size:3.6rem;animation:popIn .8s}.end-card h2{margin:8px 0 6px;font-size:1.5rem}.end-score{font-size:2.4rem;font-weight:800;color:var(--gold);margin:8px 0}.end-msg{opacity:.8;margin-bottom:22px}
+.back-link{color:#b9c8ff;text-decoration:none;text-align:center;font-size:.9rem}.save-note{text-align:center;color:#a8b5d8;font-size:.78rem;margin:0}
+@media(max-width:460px){.hud-value{font-size:1rem}.card{padding:28px 14px 20px;border-radius:24px}.btn{padding:15px 6px;font-size:1rem}.answers{gap:9px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<canvas id="trail"></canvas><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<main class="wrap">
+<header class="hud">
+<div class="hud-item"><span class="hud-label">امتیاز</span><span class="hud-value" id="score">۰</span></div>
+<div class="hud-item"><span class="hud-label">زنجیره</span><span class="hud-value" id="streak">۰ 🔥</span></div>
+<div class="hud-item"><span class="hud-label">سؤال</span><span class="hud-value" id="progress">۰ / ۱۵</span></div>
+</header>
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+<section class="card" id="card"><div class="card-glow"></div><p class="q-label">آیا این عدد اول است؟</p><div class="q-num" id="qnum">۳۷</div>
+<div class="answers"><button class="btn btn-prime" id="btnPrime" data-answer="prime">◆ اول</button><button class="btn btn-comp" id="btnComp" data-answer="comp">✕ مرکب</button></div>
+<div class="feedback" id="feedback" aria-live="polite"></div></section>
+<div class="footer"><button class="ghost" id="soundBtn">🔊 صدا روشن</button><button class="ghost" id="restartBtn">↻ شروع دوباره</button></div>
+<p class="save-note">پیشرفت این بازی روی همین دستگاه ذخیره می‌شود.</p>
+<a class="back-link" href="./index.html">← بازگشت به ماجرای اعداد اول</a>
+</main>
+<div class="end-screen" id="endScreen"><div class="end-card"><div class="end-emoji">🏆</div><h2>پایان بازی!</h2><p class="end-score" id="endScore">۰</p><p class="end-msg" id="endMsg"></p><button class="btn btn-prime" id="playAgain" style="max-width:none;width:100%">بازی دوباره</button></div></div>
+<script>
+'use strict';
+const FA='۰۱۲۳۴۵۶۷۸۹',fa=n=>String(n).replace(/\d/g,d=>FA[+d]),SAVE_KEY='primeHunterSaveV1',TOTAL=15;
+function isPrime(n){if(n<2)return false;if(n<4)return true;if(n%2===0)return false;for(let i=3;i*i<=n;i+=2)if(n%i===0)return false;return true}
+function smallestFactor(n){for(let i=2;i*i<=n;i++)if(n%i===0)return i;return null}
+let audioCtx=null,soundOn=true;
+function initAudio(){try{if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume()}catch(e){soundOn=false}}
+document.addEventListener('pointerdown',initAudio,{once:true});
+function tone({freq=440,dur=.2,type='sine',vol=.18,when=0,slideTo=null}){if(!soundOn||!audioCtx)return;const t0=audioCtx.currentTime+when,osc=audioCtx.createOscillator(),g=audioCtx.createGain();osc.type=type;osc.frequency.setValueAtTime(freq,t0);if(slideTo)osc.frequency.exponentialRampToValueAtTime(slideTo,t0+dur);g.gain.setValueAtTime(.0001,t0);g.gain.exponentialRampToValueAtTime(vol,t0+.012);g.gain.exponentialRampToValueAtTime(.0001,t0+dur);osc.connect(g).connect(audioCtx.destination);osc.start(t0);osc.stop(t0+dur+.05)}
+const sfxClick=()=>tone({freq:720,dur:.06,vol:.07}),sfxCorrect=()=>{[523.25,659.25,783.99,1046.5].forEach((f,i)=>tone({freq:f,dur:i===3?.35:.16,type:'triangle',vol:.13,when:i*.09}))},sfxWrong=()=>{tone({freq:220,dur:.32,type:'sawtooth',vol:.1,slideTo:80});tone({freq:150,dur:.26,type:'square',vol:.05,when:.04,slideTo:70})},sfxWin=()=>[523,659,784,1046,1318,1568].forEach((f,i)=>tone({freq:f,dur:.3,type:'triangle',vol:.12,when:i*.11}));
+const cv=document.getElementById('trail'),ctx=cv.getContext('2d'),particles=[],mouse={x:-100,y:-100};
+function resize(){const dpr=Math.min(window.devicePixelRatio||1,1.7);cv.width=Math.round(innerWidth*dpr);cv.height=Math.round(innerHeight*dpr);cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';ctx.setTransform(dpr,0,0,dpr,0,0)}
+window.addEventListener('resize',resize);resize();
+function addParticle(p){particles.push(Object.assign({vx:0,vy:0,gravity:0,decay:.022,size:4,hue:190,life:1},p));if(particles.length>220)particles.splice(0,particles.length-220)}
+function spawnTrail(x,y){for(let i=0;i<2;i++)addParticle({x:x+(Math.random()-.5)*10,y:y+(Math.random()-.5)*10,vx:(Math.random()-.5)*1.4,vy:(Math.random()-.5)*1.4-.5,size:2.5+Math.random()*4,hue:180+Math.random()*120,decay:.025+Math.random()*.02})}
+function burst(x,y,hue=150,count=34){for(let i=0;i<count;i++){const a=Math.random()*Math.PI*2,sp=2+Math.random()*7;addParticle({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,gravity:.16,size:2+Math.random()*5,hue:hue+(Math.random()-.5)*40,decay:.025+Math.random()*.02})}}
+function burstFromEl(el,hue){const r=el.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2,hue,36)}
+document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;spawnTrail(e.clientX,e.clientY)});
+document.addEventListener('touchmove',e=>{const t=e.touches[0];if(t){mouse.x=t.clientX;mouse.y=t.clientY;spawnTrail(t.clientX,t.clientY)}},{passive:true});
+document.addEventListener('touchstart',e=>{const t=e.touches[0];if(t){mouse.x=t.clientX;mouse.y=t.clientY}},{passive:true});
+let animationFrame=0;
+function animate(){ctx.clearRect(0,0,innerWidth,innerHeight);if(mouse.x>=0){const R=62+Math.sin(performance.now()/280)*8,g=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,R);g.addColorStop(0,'rgba(110,231,255,.26)');g.addColorStop(.45,'rgba(167,139,250,.1)');g.addColorStop(1,'rgba(110,231,255,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(mouse.x,mouse.y,R,0,Math.PI*2);ctx.fill()}
+for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.vy+=p.gravity;p.x+=p.vx;p.y+=p.vy;p.vx*=.99;p.vy*=.99;p.life-=p.decay;if(p.life<=0){particles.splice(i,1);continue}ctx.beginPath();ctx.arc(p.x,p.y,Math.max(.1,p.size*p.life),0,Math.PI*2);ctx.fillStyle=`hsla(${p.hue},100%,70%,${p.life*.75})`;ctx.shadowBlur=14;ctx.shadowColor=`hsla(${p.hue},100%,65%,${p.life})`;ctx.fill()}ctx.shadowBlur=0;animationFrame=requestAnimationFrame(animate)}
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)animate();
+const primes=[],composites=[];for(let n=2;n<=100;n++)(isPrime(n)?primes:composites).push(n);
+const used=new Set(),state={score:0,streak:0,best:0,q:0,current:null,answered:false,completed:false};
+let wantPrimeNext=Math.random()<.5,answerTimer=null;
+const $=id=>document.getElementById(id),cardEl=$('card'),qnumEl=$('qnum'),scoreEl=$('score'),streakEl=$('streak'),progressEl=$('progress'),barEl=$('progressFill'),feedbackEl=$('feedback'),btnPrime=$('btnPrime'),btnComp=$('btnComp'),endScreen=$('endScreen'),endScore=$('endScore'),endMsg=$('endMsg'),soundBtn=$('soundBtn');
+function saveGame(){try{localStorage.setItem(SAVE_KEY,JSON.stringify({...state,used:[...used],wantPrimeNext,soundOn}))}catch(e){console.warn('ذخیره انجام نشد',e)}}
+function updateHUD(){scoreEl.textContent=fa(state.score);streakEl.textContent=fa(state.streak)+' 🔥';progressEl.textContent=fa(Math.min(state.q,TOTAL))+' / '+fa(TOTAL);barEl.style.width=(Math.min(state.q/TOTAL,1)*100)+'%'}
+function explain(n){if(isPrime(n))return `${fa(n)} عدد اول است؛ فقط بر ۱ و ${fa(n)} بخش‌پذیر است.`;const f=smallestFactor(n);return `${fa(n)} عدد مرکب است، چون ${fa(n)} = ${fa(f)} × ${fa(n/f)}.`}
+function renderQuestion(n){state.answered=false;cardEl.classList.remove('correct','wrong','shake');feedbackEl.classList.remove('show');feedbackEl.innerHTML='';btnPrime.disabled=btnComp.disabled=false;cardEl.classList.remove('enter');void cardEl.offsetWidth;cardEl.classList.add('enter');qnumEl.classList.remove('pop');void qnumEl.offsetWidth;qnumEl.textContent=fa(n);qnumEl.classList.add('pop');updateHUD();saveGame()}
+function pickNumber(wantPrime){let pool=(wantPrime?primes:composites).filter(n=>!used.has(n));if(!pool.length){(wantPrime?primes:composites).forEach(n=>used.delete(n));pool=wantPrime?primes:composites}const n=pool[Math.floor(Math.random()*pool.length)];used.add(n);return n}
+function nextQuestion(){if(answerTimer){clearTimeout(answerTimer);answerTimer=null}if(state.q>=TOTAL){showEnd();return}wantPrimeNext=Math.random()<.5;state.current=pickNumber(wantPrimeNext);state.q++;renderQuestion(state.current)}
+function showEnd(){state.completed=true;saveGame();sfxWin();for(let i=0;i<100;i++)addParticle({x:Math.random()*innerWidth,y:-Math.random()*innerHeight*.5,vx:(Math.random()-.5)*3,vy:1+Math.random()*4,gravity:.07,size:3+Math.random()*5,hue:Math.random()*360,decay:.008});endScore.textContent=fa(state.score)+' امتیاز';let msg=state.score>=150?'تو یه غربالگر حرفه‌ای هستی! 🏆':state.score>=80?'عالی بود! داری استاد اعداد اول می‌شی ⭐':'خوب بود! با تمرین بیشتر عالی می‌شی 💪';if(state.best>0)msg+=` — بهترین زنجیره: ${fa(state.best)} 🔥`;endMsg.textContent=msg;endScreen.classList.add('show')}
+function answer(saysPrime){if(state.answered||state.completed)return;state.answered=true;btnPrime.disabled=btnComp.disabled=true;const n=state.current,correct=saysPrime===isPrime(n);if(correct){state.streak++;state.best=Math.max(state.best,state.streak);const gained=10+Math.min(state.streak,5)*2;state.score+=gained;cardEl.classList.add('correct');sfxCorrect();burstFromEl(qnumEl,150);feedbackEl.innerHTML=`<span class="good">آفرین! ✓ +${fa(gained)} امتیاز</span><br>${explain(n)}`}else{state.streak=0;cardEl.classList.add('wrong','shake');sfxWrong();feedbackEl.innerHTML=`<span class="bad">اشتباه بود ✗</span><br>${explain(n)}`}feedbackEl.classList.add('show');updateHUD();saveGame();answerTimer=setTimeout(()=>{answerTimer=null;nextQuestion()},1600)}
+btnPrime.addEventListener('click',()=>{initAudio();sfxClick();answer(true)});btnComp.addEventListener('click',()=>{initAudio();sfxClick();answer(false)});
+cardEl.addEventListener('animationend',e=>{if(e.animationName==='cardIn')cardEl.classList.remove('enter');if(e.animationName==='shake')cardEl.classList.remove('shake')});
+function startGame(){if(answerTimer){clearTimeout(answerTimer);answerTimer=null}Object.assign(state,{score:0,streak:0,best:0,q:0,current:null,answered:false,completed:false});used.clear();endScreen.classList.remove('show');barEl.style.width='0%';updateHUD();nextQuestion();saveGame()}
+function restoreGame(){try{const d=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(!d||typeof d!=='object'||!Number.isInteger(d.q)||d.q<1||d.q>TOTAL||!Number.isInteger(d.current)||d.current<2||d.current>100)return false;Object.assign(state,{score:Math.max(0,Number(d.score)||0),streak:Math.max(0,Number(d.streak)||0),best:Math.max(0,Number(d.best)||0),q:d.q,current:d.current,answered:!!d.answered,completed:!!d.completed});(Array.isArray(d.used)?d.used:[]).forEach(n=>{if(Number.isInteger(n)&&n>=2&&n<=100)used.add(n)});wantPrimeNext=!!d.wantPrimeNext;soundOn=d.soundOn!==false;soundBtn.textContent=soundOn?'🔊 صدا روشن':'🔇 صدا خاموش';updateHUD();if(state.completed){showEnd();return true}renderQuestion(state.current);if(state.answered){const correct=isPrime(state.current);cardEl.classList.add(correct?'correct':'wrong');feedbackEl.innerHTML=`<span class="${correct?'good':'bad'}">${correct?'پاسخ درست بود ✓':'پاسخ اشتباه بود ✗'}</span><br>${explain(state.current)}`;feedbackEl.classList.add('show');btnPrime.disabled=btnComp.disabled=true;answerTimer=setTimeout(()=>{answerTimer=null;nextQuestion()},900)}return true}catch(e){return false}}
+function toggleSound(){initAudio();soundOn=!soundOn;soundBtn.textContent=soundOn?'🔊 صدا روشن':'🔇 صدا خاموش';saveGame();if(soundOn)sfxClick()}
+soundBtn.addEventListener('click',toggleSound);
+$('restartBtn').addEventListener('click',()=>{initAudio();sfxClick();if(confirm('مطمئنی می‌خواهی بازی را از ابتدا شروع کنی؟ امتیاز فعلی پاک می‌شود.'))startGame()});
+$('playAgain').addEventListener('click',()=>{initAudio();sfxClick();startGame()});
+if(!restoreGame())startGame();
+window.addEventListener('pagehide',saveGame);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')saveGame()});
+</script>
+</body></html>
